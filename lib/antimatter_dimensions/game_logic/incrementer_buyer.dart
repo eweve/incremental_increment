@@ -16,6 +16,7 @@ class IncrementerBuyer {
   Number get _baseCost => Number.number(1, dimCostExp[dimension]);
   Number get _costMultiplier => Number.number(1, dimCostMulExp[dimension]);
   Number get _costMultiplierStage => Number.from(incrementer.value.exponent);
+  // TODO: Code is currently broken
   Number get cost => _baseCost * _costMultiplier.power(_costMultiplierStage);
 
   int get dimension => _dimension;

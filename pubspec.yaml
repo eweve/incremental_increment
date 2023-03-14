@@ -1,5 +1,5 @@
 name: incremental_increment
-description: A new Flutter project.
+description: An idle game exploration project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -39,6 +39,7 @@ dependencies:
   # BLoC state management
   bloc: ^8.0.3
   bloc_test: ^9.0.3
+  flutter_bloc: ^8.0.1
   # Library that helps with class equality
   equatable: ^2.0.3
 

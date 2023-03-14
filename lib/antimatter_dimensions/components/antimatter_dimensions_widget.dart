@@ -1,110 +1,70 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:incremental_increment/antimatter_dimensions/game_logic/incrementer_buyer.dart';
-import 'package:incremental_increment/antimatter_dimensions/game_logic/world_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:incremental_increment/antimatter_dimensions/bloc/adi_bloc.dart';
+import 'package:incremental_increment/antimatter_dimensions/bloc/adi_bloc_event.dart';
+import 'package:incremental_increment/antimatter_dimensions/bloc/adi_bloc_state.dart';
 
 class AntimatterDimensionsApp extends StatelessWidget {
   const AntimatterDimensionsApp({super.key});
 
+  String _formatDimension(AntimatterDimensionsState state, int dimension) {
+    return "Antimatter Dimension ${dimension + 1} "
+        "x${state.incrementers[dimension].modifier.toString()} "
+        "${state.incrementers[dimension].incrementers.toString()}";
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Idle',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const AntimatterDimensionsPage(title: 'Antimatter Dimensions'),
-    );
-  }
-}
-
-class AntimatterDimensionsPage extends StatefulWidget {
-  const AntimatterDimensionsPage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<AntimatterDimensionsPage> createState() => _AntimatterDimensionsPageState();
-}
-
-class _AntimatterDimensionsPageState extends State<AntimatterDimensionsPage> {
-  bool _isRunning = true;
-
-  WorldState worldState = WorldState();
-
-  void _incrementCounter() {
-    setState(() {
-      worldState.tick();
-    });
-  }
-
-  void _buy() {
-    worldState.buyAll();
-  }
-
-  @override
-  void dispose() {
-    _isRunning = false;
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    worldState.init();
-    Timer.periodic(const Duration(milliseconds: 50), (Timer timer) {
-      if (!_isRunning) {
-        // cancel the timer
-        timer.cancel();
-      }
-      _incrementCounter();
-    });
-    super.initState();
-  }
-
-  String _formatDimension(IncrementerBuyer buyer) {
-    return "Antimatter Dimension ${buyer.incrementer.dimension + 1} "
-        "x${buyer.incrementer.modifier().toString()} "
-        "${buyer.incrementer.incrementers.value.toString()}";
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
+        title: 'Flutter Idle',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ...[
-                Text(
-                  worldState.worldNumber.value.toString(),
-                  style: Theme.of(context).textTheme.displaySmall,
-                )
-              ],
-              for (IncrementerBuyer buyer in worldState.incrementerBuyers)
-                Row(
-                  children: [
-                    Text(
-                      _formatDimension(buyer),
-                      style: Theme.of(context).textTheme.headlineSmall,
-                    ),
-                    MaterialButton(
-                        onPressed: buyer.buyUpgrade,
-                        child: Container(
-                          color: Colors.green,
-                          child: Text(
-                            'Cost: ${buyer.cost}',
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 13.0),
-                          ),
-                        )),
-                  ],
+        home: BlocProvider(
+            create: (context) => AntimatterDimensionsBloc(),
+            child: Scaffold(
+                appBar: AppBar(
+                  title: const Text("Antimatter Dimensions"),
                 ),
-            ],
-          ),
+                body: BlocConsumer<AntimatterDimensionsBloc, AntimatterDimensionsState>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            ...[
+                              Text(
+                                state.worldNumber.toString(),
+                                style: Theme.of(context).textTheme.displaySmall,
+                              )
+                            ],
+                            for (int i = 0; i < state.incrementers.length; i++)
+                              Row(
+                                children: [
+                                  Text(
+                                    _formatDimension(state, i),
+                                    style: Theme.of(context).textTheme.headlineSmall,
+                                  ),
+                                  MaterialButton(
+                                      onPressed: () => context.read<AntimatterDimensionsBloc>().add(BuyDimensionEvent(dimension: i)),
+                                      child: Container(
+                                        color: Colors.green,
+                                        child: Text(
+                                          'Cost: ${state.buyers[i].cost}',
+                                          style: const TextStyle(
+                                              color: Colors.white, fontSize: 13.0),
+                                        ),
+                                      )
+                                  ),
+                                ],
+                              ),
+                          ],
+                        ),
+                      );
+                    }
+                )
+            )
         )
     );
   }

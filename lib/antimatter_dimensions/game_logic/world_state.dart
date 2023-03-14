@@ -14,6 +14,10 @@ class WorldState {
   final List<Incrementer> incrementers = [];
   final List<IncrementerBuyer> incrementerBuyers = [];
 
+  WorldState() {
+    init();
+  }
+
   void init() {
     for (int i = 0; i < 4; i++) {
       List<Number Function()> modifiers = [];
