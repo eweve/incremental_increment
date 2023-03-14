@@ -1,7 +1,7 @@
 import 'package:incremental_increment/game/engine/util/number.dart';
-import 'package:incremental_increment/game/state/antimatter_dimensions/incrementer.dart';
+import 'package:incremental_increment/antimatter_dimensions/game_logic/incrementer.dart';
 
-import '../../engine/unit/resource_unit.dart';
+import '../../game/engine/unit/resource_unit.dart';
 
 class IncrementerBuyer {
   final int _dimension;

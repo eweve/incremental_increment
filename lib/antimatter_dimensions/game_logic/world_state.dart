@@ -1,8 +1,8 @@
 import 'package:incremental_increment/game/engine/unit/abstract_unit.dart';
 import 'package:incremental_increment/game/engine/util/number.dart';
 import 'package:incremental_increment/game/engine/util/pulse.dart';
-import 'package:incremental_increment/game/state/antimatter_dimensions/incrementer.dart';
-import 'package:incremental_increment/game/state/antimatter_dimensions/world_number.dart';
+import 'package:incremental_increment/antimatter_dimensions/game_logic/incrementer.dart';
+import 'package:incremental_increment/antimatter_dimensions/game_logic/world_number.dart';
 
 import 'incrementer_buyer.dart';
 
