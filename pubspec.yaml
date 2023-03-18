@@ -42,6 +42,10 @@ dependencies:
   flutter_bloc: ^8.0.1
   # Library that helps with class equality
   equatable: ^2.0.3
+  # Drawing
+  flutter_svg: ^2.0.4
+  # Components
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   test: ^1.21.4
@@ -67,9 +71,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+   - lib/melvor/assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
