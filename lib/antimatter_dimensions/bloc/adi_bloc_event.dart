@@ -6,11 +6,6 @@ abstract class AntimatterDimensionsBlocEvent {
 }
 
 @immutable
-class ChangeTextEvent extends AntimatterDimensionsBlocEvent {
-  const ChangeTextEvent();
-}
-
-@immutable
 class TickEvent extends AntimatterDimensionsBlocEvent {
   const TickEvent();
 }

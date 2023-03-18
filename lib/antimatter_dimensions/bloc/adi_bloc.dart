@@ -6,7 +6,6 @@ import 'package:incremental_increment/antimatter_dimensions/game_logic/world_sta
 import 'adi_bloc_event.dart';
 import 'adi_bloc_state.dart';
 
-
 class AntimatterDimensionsBloc extends Bloc<AntimatterDimensionsBlocEvent, AntimatterDimensionsState> {
   final WorldState worldState = WorldState();
   StreamSubscription? _timerSubscription;

@@ -16,7 +16,7 @@ class AntimatterDimensionsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Idle',
+        title: 'Antimatter Dimensions Clone',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
