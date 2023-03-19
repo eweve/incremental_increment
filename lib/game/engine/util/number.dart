@@ -47,6 +47,14 @@ class Number implements Comparable<Number> {
     return "${mantissa.toStringAsFixed(2)}e${exponent.toInt()}";
   }
 
+  String toIntString() {
+    if (exponent > -2 && exponent < 6) {
+      var value = (mantissa * pow(10, exponent + 2)).roundToDouble() * 0.01;
+      return value.toStringAsFixed(0);
+    }
+    return "${mantissa.toStringAsFixed(2)}e${exponent.toInt()}";
+  }
+
   // String toStringAsFixed(int decimals) {
   //   assert(decimals >= 0);
   //   return '${mantissa.toStringAsFixed(decimals)}e${exponent.toInt()}';

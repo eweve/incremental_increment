@@ -28,47 +28,52 @@ class _MelvorLayoutWidget extends State<MelvorLayoutWidget> {
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
-    return LayoutBuilder(
-        builder: (context, constraints) {
-          return Scaffold(
-            body: Row(
-              children: [
-                SafeArea(
-                  child: NavigationRail(
-                    extended: constraints.maxWidth >= 600,
-                    destinations: const [
-                      NavigationRailDestination(
-                        icon: Icon(Icons.home_outlined),
-                        label: Text('Home'),
-                      ),
-                      NavigationRailDestination(
-                        icon: Icon(Icons.business_center_outlined),
-                        label: Text('Inventory'),
-                      ),
-                      NavigationRailDestination(
-                        icon: Icon(Icons.diamond_outlined),
-                        label: Text('Mining'),
-                      ),
-                    ],
-                    selectedIndex: selectedIndex,
-                    onDestinationSelected: (value) {
-                      setState(() {
-                        selectedIndex = value;
-                      });
-                    },
+    return Center(
+      child: LayoutBuilder(
+          builder: (context, constraints) {
+            return Scaffold(
+              body: Row(
+                children: [
+                  SafeArea(
+                    child: NavigationRail(
+                      extended: constraints.maxWidth >= 600,
+                      destinations: const [
+                        NavigationRailDestination(
+                          icon: Icon(Icons.home_outlined),
+                          label: Text('Home'),
+                        ),
+                        NavigationRailDestination(
+                          icon: Icon(Icons.business_center_outlined),
+                          label: Text('Inventory'),
+                        ),
+                        NavigationRailDestination(
+                          icon: Icon(Icons.diamond_outlined),
+                          label: Text('Mining'),
+                        ),
+                      ],
+                      selectedIndex: selectedIndex,
+                      onDestinationSelected: (value) {
+                        setState(() {
+                          selectedIndex = value;
+                        });
+                      },
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: Container(
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                    alignment: Alignment.topCenter,
-                    child: page,
+                  Expanded(
+                    child: Container(
+                      color: Theme
+                          .of(context)
+                          .colorScheme
+                          .primaryContainer,
+                      alignment: Alignment.topCenter,
+                      child: page,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          );
-        }
+                ],
+              ),
+            );
+          }
+      ),
     );
   }
 }

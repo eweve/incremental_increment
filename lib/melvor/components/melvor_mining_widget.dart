@@ -1,8 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:incremental_increment/melvor/components/melvor_mining_action_card_widget.dart';
+import 'package:incremental_increment/melvor/game_logic/mining_manager.dart';
 
 class MelvorMiningWidget extends StatefulWidget {
   const MelvorMiningWidget({Key? key}) : super(key: key);
@@ -53,10 +52,10 @@ class _MelvorMiningWidgetState extends State<MelvorMiningWidget>
                   spacing: 10,
                   runSpacing: 10,
                   children: const [
-                    MelvorMiningActionCardWidget(resourceName: 'Copper'),
-                    MelvorMiningActionCardWidget(resourceName: 'Tin'),
-                    MelvorMiningActionCardWidget(resourceName: 'Iron'),
-                    MelvorMiningActionCardWidget(resourceName: 'Coal'),
+                    MelvorMiningActionCardWidget(resource: MiningResource.copperNode),
+                    MelvorMiningActionCardWidget(resource: MiningResource.tinNode),
+                    MelvorMiningActionCardWidget(resource: MiningResource.ironNode),
+                    MelvorMiningActionCardWidget(resource: MiningResource.coalNode),
                   ],
                 )
             )
